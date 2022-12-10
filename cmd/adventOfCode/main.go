@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"strconv"
 
@@ -54,10 +55,22 @@ func main() {
 		}
 	}
 
+	testRun := len(os.Args) >= 4 && os.Args[3] != ""
+	if testRun {
+		data = utils.GetFromClipboard()
+	}
+
+	var result string
 	if part == 1 {
-		utils.CopyToClipboard(challenge.Part1(data))
+		result = challenge.Part1(data)
 	} else {
-		utils.CopyToClipboard(challenge.Part2(data))
+		result = challenge.Part2(data)
+	}
+
+	if !testRun {
+		utils.CopyToClipboard(result)
+	} else {
+		fmt.Print(result + "\n")
 	}
 }
 

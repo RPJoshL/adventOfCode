@@ -12,7 +12,7 @@ import (
 )
 
 // Copies the given string to the clipboard.
-// The tool 'xclip needs to be installed'
+// The tool 'xclip' needs to be installed
 func CopyToClipboard(text string) {
 	command := fmt.Sprintf("echo '%s' | xclip -selection clipboard", strings.ReplaceAll(text, "'", "''"))
 	cmd := exec.Command("bash", "-c", command)
@@ -21,7 +21,18 @@ func CopyToClipboard(text string) {
 		PrintError("Error while executing command: %s", err)
 	}
 
-	fmt.Print(text)
+	fmt.Print(text + "\n")
+}
+
+// Gets the content of the clipboard.
+// The tool 'xclip' needs to be installed
+func GetFromClipboard() string {
+	out, err := exec.Command("bash", "-c", "xclip -o -selection clipboard").Output()
+	if err != nil {
+		PrintError("Error while getting clipboard content: %s", err)
+	}
+
+	return string(out)
 }
 
 // Get's the input data for the task
