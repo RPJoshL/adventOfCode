@@ -9,6 +9,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"git.rpjosh.de/RPJosh/go-logger"
 )
 
 // Copies the given string to the clipboard.
@@ -87,7 +89,7 @@ func PrintError(format string, a ...any) {
 func ToInt(val string) int {
 	value, err := strconv.Atoi(val)
 	if err != nil {
-		PrintError("%s", err)
+		logger.Fatal("Failed to  convert %q to a number: %s", val, err)
 	}
 
 	return value

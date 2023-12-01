@@ -5,6 +5,7 @@ import (
 	"os"
 	"strconv"
 
+	"git.rpjosh.de/RPJosh/go-logger"
 	"rpjosh.de/adventOfCode/internal/2023/day_01"
 	"rpjosh.de/adventOfCode/internal/2023/day_02"
 	"rpjosh.de/adventOfCode/internal/2023/day_03"
@@ -34,6 +35,13 @@ import (
 )
 
 func main() {
+
+	// Configure logger
+	logger.SetGlobalLogger(&logger.Logger{
+		Level: logger.LevelDebug,
+		File:  &logger.FileLogger{},
+	})
+
 	year := 2023
 	day := 1
 	if len(os.Args) >= 2 && os.Args[1] != "" {
