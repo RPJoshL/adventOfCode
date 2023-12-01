@@ -45,7 +45,7 @@ func GetInputData(year int, day int) string {
 	}
 
 	// Make a request to get the input from advent of code and save it in a file
-	url := fmt.Sprintf("https://adventofcode.com/%d/day/%d/input", year, day)
+	url := fmt.Sprintf("https://adventOfCode.com/%d/day/%d/input", year, day)
 
 	// Read cookie session vaue
 	session, err := os.ReadFile("./session.txt")

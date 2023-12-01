@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"rpjosh.de/adventOfCode2022/pkg/utils"
+	"rpjosh.de/adventOfCode/pkg/utils"
 )
 
 type Day struct{}
