@@ -94,3 +94,8 @@ func ToInt(val string) int {
 
 	return value
 }
+
+func IsInt(val string) bool {
+	_, err := strconv.Atoi(val)
+	return err == nil
+}
