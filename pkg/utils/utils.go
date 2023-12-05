@@ -99,3 +99,39 @@ func IsInt(val string) bool {
 	_, err := strconv.Atoi(val)
 	return err == nil
 }
+
+// GetMinValue returns the smallest number
+// within the given array
+func GetMinValue(values []int) int {
+	if len(values) == 0 {
+		return 0
+	}
+
+	min := values[0]
+	for _, val := range values {
+		if val < min {
+			min = val
+		}
+	}
+
+	return min
+}
+
+// ConvertToInt converts each number within
+// []string to a number and returns the resulting array.
+// Empty string values are ignored
+func ConvertArrayToInt(values []string) []int {
+	rtc := make([]int, 0)
+
+	// Convert each value
+	for _, nmbString := range values {
+		if nmbString == "" {
+			continue
+		}
+
+		nmb := ToInt(nmbString)
+		rtc = append(rtc, nmb)
+	}
+
+	return rtc
+}
