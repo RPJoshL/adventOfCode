@@ -6,11 +6,10 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
-
-	"git.rpjosh.de/RPJosh/go-logger"
 )
 
 // Copies the given string to the clipboard.
@@ -89,7 +88,7 @@ func PrintError(format string, a ...any) {
 func ToInt(val string) int {
 	value, err := strconv.Atoi(val)
 	if err != nil {
-		logger.Fatal("Failed to  convert %q to a number: %s", val, err)
+		panic(fmt.Sprintf("Failed to  convert %q to a number: %s", val, err))
 	}
 
 	return value
@@ -134,4 +133,20 @@ func ConvertArrayToInt(values []string) []int {
 	}
 
 	return rtc
+}
+
+// SortRunes sorts a string based on the rune value
+// of every character
+func SortRunes(value string) string {
+	runeSlice := []rune(value)
+	sort.Slice(runeSlice, func(i, j int) bool {
+		return runeSlice[i] < runeSlice[j]
+	})
+	return string(runeSlice)
+}
+
+// ReplaceCharacterInString replaces the character at the given index with
+// the provided value
+func ReplaceCharacterInString(str, replace string, index int) string {
+	return str[:index] + replace + str[index+1:]
 }
