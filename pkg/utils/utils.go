@@ -150,3 +150,26 @@ func SortRunes(value string) string {
 func ReplaceCharacterInString(str, replace string, index int) string {
 	return str[:index] + replace + str[index+1:]
 }
+
+// CalculateGCD (greates common divisor) calculates the biggest
+// positive integer that is divisible by a and b
+func CalculateGCD(a, b int) int {
+	for b != 0 {
+		t := b
+		b = a % b
+		a = t
+	}
+	return a
+}
+
+// CalculateLCM (least common multiple) calculates the smallest
+// positive integer that is divisible by all numbers
+func CalculateLCM(ints ...int) int {
+	if len(ints) == 1 {
+		return ints[0]
+	} else if len(ints) == 2 {
+		return ints[0] * ints[1] / CalculateGCD(ints[0], ints[1])
+	}
+
+	return CalculateLCM(ints[0], CalculateLCM(ints[1:]...))
+}
