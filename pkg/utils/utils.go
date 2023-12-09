@@ -173,3 +173,20 @@ func CalculateLCM(ints ...int) int {
 
 	return CalculateLCM(ints[0], CalculateLCM(ints[1:]...))
 }
+
+func AreAllElementsEqual[T any](vals []T) bool {
+	if len(vals) == 0 {
+		return true
+	}
+
+	prev := vals[0]
+	for i := 0; i < len(vals); i++ {
+		if any(prev) != any(vals[i]) {
+			return false
+		}
+
+		prev = vals[i]
+	}
+
+	return true
+}
