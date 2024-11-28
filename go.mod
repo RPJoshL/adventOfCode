@@ -1,6 +1,6 @@
 module rpjosh.de/adventOfCode
 
-go 1.18
+go 1.22
 
 require git.rpjosh.de/RPJosh/go-logger v1.3.4
 
