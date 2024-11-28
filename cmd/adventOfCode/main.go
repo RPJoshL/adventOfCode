@@ -6,31 +6,31 @@ import (
 	"strconv"
 
 	"git.rpjosh.de/RPJosh/go-logger"
-	"rpjosh.de/adventOfCode/internal/2023/day_01"
-	"rpjosh.de/adventOfCode/internal/2023/day_02"
-	"rpjosh.de/adventOfCode/internal/2023/day_03"
-	"rpjosh.de/adventOfCode/internal/2023/day_04"
-	"rpjosh.de/adventOfCode/internal/2023/day_05"
-	"rpjosh.de/adventOfCode/internal/2023/day_06"
-	"rpjosh.de/adventOfCode/internal/2023/day_07"
-	"rpjosh.de/adventOfCode/internal/2023/day_08"
-	"rpjosh.de/adventOfCode/internal/2023/day_09"
-	"rpjosh.de/adventOfCode/internal/2023/day_10"
-	"rpjosh.de/adventOfCode/internal/2023/day_11"
-	"rpjosh.de/adventOfCode/internal/2023/day_12"
-	"rpjosh.de/adventOfCode/internal/2023/day_13"
-	"rpjosh.de/adventOfCode/internal/2023/day_14"
-	"rpjosh.de/adventOfCode/internal/2023/day_15"
-	"rpjosh.de/adventOfCode/internal/2023/day_16"
-	"rpjosh.de/adventOfCode/internal/2023/day_17"
-	"rpjosh.de/adventOfCode/internal/2023/day_18"
-	"rpjosh.de/adventOfCode/internal/2023/day_19"
-	"rpjosh.de/adventOfCode/internal/2023/day_20"
-	"rpjosh.de/adventOfCode/internal/2023/day_21"
-	"rpjosh.de/adventOfCode/internal/2023/day_22"
-	"rpjosh.de/adventOfCode/internal/2023/day_23"
-	"rpjosh.de/adventOfCode/internal/2023/day_24"
-	"rpjosh.de/adventOfCode/internal/2023/day_25"
+	"rpjosh.de/adventOfCode/internal/2024/day_01"
+	"rpjosh.de/adventOfCode/internal/2024/day_02"
+	"rpjosh.de/adventOfCode/internal/2024/day_03"
+	"rpjosh.de/adventOfCode/internal/2024/day_04"
+	"rpjosh.de/adventOfCode/internal/2024/day_05"
+	"rpjosh.de/adventOfCode/internal/2024/day_06"
+	"rpjosh.de/adventOfCode/internal/2024/day_07"
+	"rpjosh.de/adventOfCode/internal/2024/day_08"
+	"rpjosh.de/adventOfCode/internal/2024/day_09"
+	"rpjosh.de/adventOfCode/internal/2024/day_10"
+	"rpjosh.de/adventOfCode/internal/2024/day_11"
+	"rpjosh.de/adventOfCode/internal/2024/day_12"
+	"rpjosh.de/adventOfCode/internal/2024/day_13"
+	"rpjosh.de/adventOfCode/internal/2024/day_14"
+	"rpjosh.de/adventOfCode/internal/2024/day_15"
+	"rpjosh.de/adventOfCode/internal/2024/day_16"
+	"rpjosh.de/adventOfCode/internal/2024/day_17"
+	"rpjosh.de/adventOfCode/internal/2024/day_18"
+	"rpjosh.de/adventOfCode/internal/2024/day_19"
+	"rpjosh.de/adventOfCode/internal/2024/day_20"
+	"rpjosh.de/adventOfCode/internal/2024/day_21"
+	"rpjosh.de/adventOfCode/internal/2024/day_22"
+	"rpjosh.de/adventOfCode/internal/2024/day_23"
+	"rpjosh.de/adventOfCode/internal/2024/day_24"
+	"rpjosh.de/adventOfCode/internal/2024/day_25"
 	"rpjosh.de/adventOfCode/pkg/utils"
 )
 
@@ -42,7 +42,7 @@ func main() {
 		File:  &logger.FileLogger{},
 	})
 
-	year := 2023
+	year := 2024
 	day := 1
 	if len(os.Args) >= 2 && os.Args[1] != "" {
 		var err error
