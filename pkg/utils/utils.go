@@ -10,16 +10,17 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"git.rpjosh.de/RPJosh/go-logger"
 )
 
 // Copies the given string to the clipboard.
 // The tool 'xclip' needs to be installed
 func CopyToClipboard(text string) {
-	command := fmt.Sprintf("echo '%s' | xclip -selection clipboard", strings.ReplaceAll(text, "'", "''"))
-	cmd := exec.Command("bash", "-c", command)
+	cmd := exec.Command("wl-copy", text)
 
 	if err := cmd.Start(); err != nil {
-		PrintError("Error while executing command: %s", err)
+		logger.Fatal("Error while executing command: %s", err)
 	}
 
 	fmt.Print(text + "\n")
@@ -28,9 +29,9 @@ func CopyToClipboard(text string) {
 // Gets the content of the clipboard.
 // The tool 'xclip' needs to be installed
 func GetFromClipboard() string {
-	out, err := exec.Command("bash", "-c", "xclip -o -selection clipboard").Output()
+	out, err := exec.Command("bash", "-c", "wl-paste").Output()
 	if err != nil {
-		PrintError("Error while getting clipboard content: %s", err)
+		logger.Fatal("Error while getting clipboard content: %s", err)
 	}
 
 	return string(out)
@@ -116,6 +117,20 @@ func GetMinValue(values []int) int {
 	return min
 }
 
+// RemoveEmptyLines removes all empty lines of the provided
+// string array
+func RemoveEmptyLines(input []string) []string {
+	rtc := input
+
+	for i, str := range input {
+		if strings.Trim(str, " \n") == "" {
+			rtc = RemovePreserveOrder(&input, i)
+		}
+	}
+
+	return rtc
+}
+
 // ConvertToInt converts each number within
 // []string to a number and returns the resulting array.
 // Empty string values are ignored
@@ -189,4 +204,21 @@ func AreAllElementsEqual[T any](vals []T) bool {
 	}
 
 	return true
+}
+
+// Remove removes one element from the slice.
+// The order won't be preserved for performance.
+//
+// Sample (remove [2]): 10, 20, 30, 40, 50 => 10, 20, 50, 40
+func Remove[T any](s *[]T, i int) []T {
+	(*s)[i] = (*s)[len(*s)-1]
+	return (*s)[:len(*s)-1]
+}
+
+// RemovePreserveOrder is like [Remove] but preserves the order
+// of elements.
+// This method is not as efficent as [Remove] because a new copy
+// of the slice is created
+func RemovePreserveOrder[T any](s *[]T, i int) []T {
+	return append((*s)[:i], (*s)[i+1:]...)
 }
