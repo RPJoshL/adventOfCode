@@ -122,9 +122,10 @@ func GetMinValue(values []int) int {
 func RemoveEmptyLines(input []string) []string {
 	rtc := input
 
-	for i, str := range input {
-		if strings.Trim(str, " \n") == "" {
-			rtc = RemovePreserveOrder(&input, i)
+	for i := 0; i < len(rtc); i++ {
+		if strings.Trim(rtc[i], " \n") == "" {
+			rtc = RemovePreserveOrder(&rtc, i)
+			i--
 		}
 	}
 
