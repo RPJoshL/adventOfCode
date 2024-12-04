@@ -223,3 +223,12 @@ func Remove[T any](s *[]T, i int) []T {
 func RemovePreserveOrder[T any](s *[]T, i int) []T {
 	return append((*s)[:i], (*s)[i+1:]...)
 }
+
+// ReverseString reverses the provided string
+func ReverseString(s string) string {
+	runes := []rune(s)
+	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+		runes[i], runes[j] = runes[j], runes[i]
+	}
+	return string(runes)
+}
