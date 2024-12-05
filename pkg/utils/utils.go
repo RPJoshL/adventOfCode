@@ -232,3 +232,39 @@ func ReverseString(s string) string {
 	}
 	return string(runes)
 }
+
+func SwapSliceElement[T any](slice []T, i, j int) {
+	tmp := slice[j]
+	slice[j] = slice[i]
+	slice[i] = tmp
+}
+
+func MoveSliceElement[T any](slice []T, fromIndex, toIndex int) []T {
+	if fromIndex == toIndex {
+		rtc := make([]T, len(slice))
+		copy(rtc, slice)
+		return rtc
+	}
+
+	if fromIndex < 0 || fromIndex >= len(slice) || toIndex < 0 || toIndex >= len(slice) || len(slice) < 2 {
+		logger.Fatal("Index out of range: from = %d, to = %d for length %d", fromIndex, toIndex, len(slice))
+	}
+
+	// Extrahiere das Element von `fromIndex`
+
+	rtc := make([]T, 0)
+	if fromIndex < toIndex {
+		rtc = append(rtc, slice[0:fromIndex]...)
+		rtc = append(rtc, slice[fromIndex+1:toIndex+1]...)
+		rtc = append(rtc, slice[fromIndex])
+		rtc = append(rtc, slice[toIndex+1:]...)
+	} else {
+		rtc = append(rtc, slice[0:toIndex]...)
+		rtc = append(rtc, slice[fromIndex])
+		rtc = append(rtc, slice[toIndex+1:fromIndex]...)
+		rtc = append(rtc, slice[toIndex])
+		rtc = append(rtc, slice[fromIndex+1:]...)
+	}
+
+	return rtc
+}
