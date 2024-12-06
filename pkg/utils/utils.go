@@ -233,12 +233,16 @@ func ReverseString(s string) string {
 	return string(runes)
 }
 
+// SwapSliceElement swaps two elements of the provided slice with each other
 func SwapSliceElement[T any](slice []T, i, j int) {
 	tmp := slice[j]
 	slice[j] = slice[i]
 	slice[i] = tmp
 }
 
+// MoveSliceElement moves the element of "fromIndex" into the "toIndex".
+// The remaining elements will be shifted to the right / left based weather
+// the fromIndex is bigger than the toIndex
 func MoveSliceElement[T any](slice []T, fromIndex, toIndex int) []T {
 	if fromIndex == toIndex {
 		rtc := make([]T, len(slice))
@@ -249,8 +253,6 @@ func MoveSliceElement[T any](slice []T, fromIndex, toIndex int) []T {
 	if fromIndex < 0 || fromIndex >= len(slice) || toIndex < 0 || toIndex >= len(slice) || len(slice) < 2 {
 		logger.Fatal("Index out of range: from = %d, to = %d for length %d", fromIndex, toIndex, len(slice))
 	}
-
-	// Extrahiere das Element von `fromIndex`
 
 	rtc := make([]T, 0)
 	if fromIndex < toIndex {
