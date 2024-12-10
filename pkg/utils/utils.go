@@ -270,3 +270,17 @@ func MoveSliceElement[T any](slice []T, fromIndex, toIndex int) []T {
 
 	return rtc
 }
+
+// CopyMap creates a duplicate instance of the provided map.
+// The elements are NOT deep copied.
+//
+// This is usefull because maps are passed by reference in go
+func CopyMap[T comparable, V any](src map[T]V) map[T]V {
+	rtc := make(map[T]V)
+
+	for key, value := range src {
+		rtc[key] = value
+	}
+
+	return rtc
+}
