@@ -284,3 +284,33 @@ func CopyMap[T comparable, V any](src map[T]V) map[T]V {
 
 	return rtc
 }
+
+// ParseSeperatedNumbers parses the given lines that contains various numbers
+// with the provided seperator and returns the values as a two dimension array
+// in the format "y,x"
+func ParseSeperatedNumbers(in []string, seperator string) [][]int {
+	rtc := make([][]int, 0)
+
+	for _, line := range in {
+		numbers := strings.Count(line, " ") + 1
+
+		format := ""
+		vals := make([]int, numbers)
+		placeholder := make([]any, numbers)
+		for i := 0; i < numbers; i++ {
+			if i != 0 {
+				format += seperator
+			}
+			format += "%d"
+			placeholder[i] = &vals[i]
+		}
+
+		if _, err := fmt.Sscanf(line, format, placeholder...); err != nil {
+			logger.Fatal("Failed to scan line %q: %s", line, err)
+		}
+
+		rtc = append(rtc, vals)
+	}
+
+	return rtc
+}

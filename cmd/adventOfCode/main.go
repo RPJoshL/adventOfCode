@@ -3,7 +3,10 @@ package main
 import (
 	"fmt"
 	"os"
+	"regexp"
+	"runtime"
 	"strconv"
+	"time"
 
 	"git.rpjosh.de/RPJosh/go-logger"
 	"rpjosh.de/adventOfCode/internal/2024/day_01"
@@ -41,6 +44,7 @@ func main() {
 		Level: logger.LevelDebug,
 		File:  &logger.FileLogger{},
 	})
+	defer TimeTrack(time.Now())
 
 	year := 2024
 	day := 1
@@ -115,4 +119,18 @@ func getAllChallenges() []Challenge {
 		&day_24.Day{},
 		&day_25.Day{},
 	}
+}
+
+func TimeTrack(start time.Time) {
+	elapsed := time.Since(start)
+
+	// Skip this function, and fetch the PC and file for its parent
+	pc, _, _, _ := runtime.Caller(1)
+
+	// Retrieve a function object this functions parent
+	funcObj := runtime.FuncForPC(pc)
+	runtimeFunc := regexp.MustCompile(`^.*\.(.*)$`)
+	name := runtimeFunc.ReplaceAllString(funcObj.Name(), "$1")
+
+	fmt.Printf("\n%s took %s\n", name, elapsed)
 }
